@@ -1,0 +1,24 @@
+
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        long long first = INT_MIN;
+        long long second = INT_MIN;
+        long long third = INT_MIN;
+        
+        for (int num : nums) {
+            if (num > first) {
+                third = second;
+                second = first;
+                first = num;
+            } else if (num < first && num > second) {
+                third = second;
+                second = num;
+            } else if (num < second && num > third) {
+                third = num;
+            }
+        }
+        
+        return (third != numeric_limits<long long>::min()) ? third : first;
+    }
+};
